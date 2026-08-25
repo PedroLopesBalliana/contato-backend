@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
-// 🔓 libera CORS para qualquer origem (teste)
+// 🔓 libera CORS para qualquer origem
 app.use(cors());
 app.use(bodyParser.json());
 
