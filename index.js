@@ -16,7 +16,9 @@ app.post('/contato', async (req, res) => {
   console.log("Dados recebidos:", nome, email, mensagem);
 
   let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // usa STARTTLS
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
