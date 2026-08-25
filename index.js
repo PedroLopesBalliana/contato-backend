@@ -6,17 +6,15 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
-// habilita CORS para permitir chamadas do frontend (localhost e Render)
-app.use(cors({
-  origin: ['http://127.0.0.1:8080', 'https://contato-backend.onrender.com']
-}));
+// libera CORS para qualquer origem (teste)
+// depois você pode restringir para ['http://127.0.0.1:8080', 'https://contato-backend.onrender.com']
+app.use(cors());
 
 app.use(bodyParser.json());
 
 // rota principal de contato
 app.post('/contato', async (req, res) => {
   const { nome, email, mensagem } = req.body;
-
   console.log("Dados recebidos:", nome, email, mensagem);
 
   let transporter = nodemailer.createTransport({
@@ -49,6 +47,7 @@ app.get('/', (req, res) => {
   res.send('API do contato-backend está rodando!');
 });
 
+//  porta dinâmica para Render
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
